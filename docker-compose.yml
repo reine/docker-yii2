@@ -1,0 +1,28 @@
+version: "3.1"
+services:
+
+  web:
+    image: yiisoftware/yii2-php:7.3-apache
+    restart: always
+    volumes:
+      - ./yii:/app
+    env_file:
+      - ./secret/dev.env
+    ports:
+      - "80:80"
+      - "443:443"
+
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./data:/var/lib/mysql
+    env_file:
+      - ./secret/dev.env
+    ports:
+      - "8890:3306"
+
+networks:
+  default:
+    external:
+      name: amp-yii
