@@ -64,4 +64,37 @@ Do not use the default SQL port (3306) - it will not work when accessing the dat
 
 For security reasons, it is advisable to use SSH tunneling to access the database server for production use.
 
-*** Currently work-in-progress. ***
+## Customizations
+
+### Pretty URLs
+
+By default, pretty URLs are not enabled in the app. Open `config/web.php` and find these lines:
+
+```php
+/*
+'urlManager' => [
+    'enablePrettyUrl' => true,
+    'showScriptName' => false,
+    'rules' => [
+    ],
+],
+*/
+```
+
+Uncomment them and add some URL rules, as such:
+
+```php
+'urlManager' => [
+    'enablePrettyUrl' => true,
+    'showScriptName' => false,
+    'rules' => [
+        '/'         => 'site/index',
+        '/about'    => 'site/about',
+        '/contact'  => 'site/contact',
+        '/login'    => 'site/login',
+        '/logout'   => 'site/logout'
+    ],
+],
+```
+
+**Work in-progress.**
