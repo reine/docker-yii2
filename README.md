@@ -16,7 +16,7 @@ Start and run the containers:
 docker-compose up -d --build
 ```
 
-This docker base have a persistent storage for the Yii2 application and for Composer to successfully create it using the basic template, we need empty it. Run the following commands inside the `web` container:
+This docker base have a persistent storage for the Yii2 application and for Composer to successfully create it using the basic template, we need to empty it. Run the following commands inside the `web` container:
 
 ```
 rm /app/.gitkeep
@@ -47,7 +47,7 @@ docker-yii2
 
 ## Local Access
 
-Access the site through http://localhost/ in your browser and you should see the WordPress setup page on initial run. Proceed with the installation procedure until you have successfully logged inside the WordPress admin panel.
+Access the site through http://localhost/ in your browser.
 
 To access the database, use an SQL client and enter the following info:
 
