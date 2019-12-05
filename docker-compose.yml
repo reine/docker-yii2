@@ -11,8 +11,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    command: >
-        sh -c "rm /app/.gitkeep && composer create-project yiisoft/yii2-app-basic /app"
 
   db:
     image: mariadb

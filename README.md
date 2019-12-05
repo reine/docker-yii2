@@ -13,8 +13,24 @@ Update the environment variables inside `secret/dev.env` to suit your needs.
 Start and run the containers:
 
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```
+
+This docker base have a persistent storage for the Yii2 application and for Composer to successfully create it using the basic template, we need empty it. Run the following commands inside the `web` container:
+
+```
+rm /app/.gitkeep
+composer create-project yiisoft/yii2-app-basic /app
+```
+
+Or, run these from your terminal instead:
+
+```
+docker-compose run --rm web rm /app/.gitkeep
+docker-compose run --rm web composer create-project yiisoft/yii2-app-basic /app
+```
+
+If you want to use the advanced template, change `yiisoft/yii2-app-basic` to `yiisoft/yii2-app-advanced`.
 
 ## Persisting Data
 
