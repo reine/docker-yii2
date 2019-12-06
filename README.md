@@ -47,7 +47,7 @@ docker-yii2
 
 ## Local Access
 
-Access the site through http://localhost/ in your browser.
+Access the site through http://localhost/ in your browser, no need to add the port as it's automatically configured to use port 80.
 
 To access the database, use an SQL client and enter the following info:
 
@@ -68,7 +68,7 @@ For security reasons, it is advisable to use SSH tunneling to access the databas
 
 ### Pretty URLs
 
-By default, pretty URLs are not enabled in the app. Open `config/web.php` and find these lines:
+By default, Apache `mod_rewrite` module is enabled but pretty URLs in the app are not. Open `config/web.php` and find these lines:
 
 ```php
 /*
@@ -97,4 +97,14 @@ Uncomment them and add some URL rules, as such:
 ],
 ```
 
-**Work in-progress.**
+Refresh the page and you should now see the updated URL routes.
+
+### Virtual Host for Advanced Template
+
+By default, the Apache virtual host configuration is set to `/app/web` as the document root. If you opted to create an app using the advanced template, you need to update the virtual host entries.
+
+Go inside the `web` container and update `/etc/apache2/sites-available/000-default.conf`. From the terminal, run:
+
+```
+docker-compose run --rm web bash
+```
