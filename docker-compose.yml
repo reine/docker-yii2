@@ -6,6 +6,7 @@ services:
     restart: always
     volumes:
       - ./yii:/app
+      - ./conf/sites-available:/etc/apache2/sites-available
     env_file:
       - ./secret/dev.env
     ports:
