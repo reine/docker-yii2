@@ -64,7 +64,7 @@ Do not use the default SQL port (3306) - it will not work when accessing the dat
 
 For security reasons, it is advisable to use SSH tunneling to access the database server for production use.
 
-## Customizations
+## Configurations
 
 ### Pretty URLs
 
@@ -99,12 +99,18 @@ Uncomment them and add some URL rules, as such:
 
 Refresh the page and you should now see the updated URL routes.
 
-### Virtual Host for Advanced Template
+### Virtual Host
 
-By default, the Apache virtual host configuration is set to `/app/web` as the document root. If you opted to create an app using the advanced template, you need to update the virtual host entries.
+By default, the Apache virtual host configuration is set to `/app/web` as the document root. If you opted to create an app using the advanced template (or any custom skeleton template), you need to update the virtual host entries.
 
-Go inside the `web` container and update `/etc/apache2/sites-available/000-default.conf`. From the terminal, run:
+Update `data/conf/000-default.conf` before you run your dockerized app. If you made any virtual host changes while docker is running, don't forget to restart the Apache server from inside the `web` container.
+
+### Custom Template
+
+If you want to use a custom template instead of the ones provided officially by the Yii Framework, you can do it during project creation. For example:
 
 ```
-docker-compose run --rm web bash
+docker-compose run --rm web composer create-project --prefer-dist justcoded/yii2-starter /app
 ```
+
+And as explained in the previous subsection, set up the virtual host configuration for your custom template to work.
