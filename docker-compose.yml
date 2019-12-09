@@ -6,7 +6,8 @@ services:
     restart: always
     volumes:
       - ./yii:/app
-      - ./conf/sites-available:/etc/apache2/sites-available
+      - ./data/conf:/etc/apache2/sites-available
+      - ./data/logs:/var/log/apache2
     env_file:
       - ./secret/dev.env
     ports:
@@ -17,7 +18,7 @@ services:
     image: mariadb
     restart: always
     volumes:
-      - ./data:/var/lib/mysql
+      - ./data/db:/var/lib/mysql
     env_file:
       - ./secret/dev.env
     ports:
