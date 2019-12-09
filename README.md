@@ -1,5 +1,9 @@
 # Dockerized Yii2 with MariaDB and PHP 7.3
 
+## Overview
+
+Whether you're a beginner or an advanced Yii developer, dockerizing your app can be daunting with a ton of configurations when all you wanted is a quick way to get set up and running in your local development. This docker base is made to help solve those setup requirements but addresses the need to use custom templates and virtual hosts.
+
 ## Initial Setup
 
 Clone this repository to use as your docker base for Yii2-enabled sites. Launch docker and create a network:
@@ -114,3 +118,26 @@ docker-compose run --rm web composer create-project --prefer-dist justcoded/yii2
 ```
 
 And as explained in the previous subsection, set up the virtual host configuration for your custom template to work.
+
+### Database Connection
+
+As the database server is containerized, using `localhost` in your app's DB config will not work. You will need to use the database container's name and port instead, as follows:
+
+```php
+return [
+    'class' => 'yii\db\Connection',
+    'dsn' => 'mysql:host=db:3306;dbname=app',
+    'username' => 'devs',
+    'password' => 'devs123!',
+    'charset' => 'utf8',
+];
+```
+
+If you are using an `.env` file, use it like this:
+
+```
+DB_HOST=db:3306
+DB_NAME=app
+DB_USER=devs
+DB_PASS=devs123!
+```
