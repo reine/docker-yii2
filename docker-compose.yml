@@ -2,14 +2,12 @@ version: "3.1"
 services:
 
   web:
-    image: yiisoftware/yii2-php:7.3-apache
+    image: sreine/yii2-apcu
     restart: always
     volumes:
       - ./yii:/app
       - ./data/conf:/etc/apache2/sites-available
       - ./data/logs:/var/log/apache2
-    env_file:
-      - ./secret/dev.env
     ports:
       - "80:80"
       - "443:443"
